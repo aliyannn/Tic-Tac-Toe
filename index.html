@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tic Tac Toe</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playwrite+NZ:wght@100..400&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <h1>Human vs AI Tic-Tac-Toe</h1>
+    <h2 class="message">Choose Your Sign</h2>
+    <h6>You have 15 seconds for each move. GO!</h6>
+
+    <form action="#">
+      <fieldset>
+        <input
+          type="radio"
+          name="player-choice"
+          id="player-choice-1"
+          value="X"
+        />
+        <label for="player-choice-1">X</label>
+        <input
+          type="radio"
+          name="player-choice"
+          id="player-choice-2"
+          value="O"
+        />
+        <label for="player-choice-2">O</label>
+      </fieldset>
+      <!-- <button id="reset" class="btn resetButton">Reset</button> -->
+    </form>
+    <div class="row" id="grid-section">
+      <ul id="grid"></ul>
+    </div>
+
+    <script src="index.js"></script>
+  </body>
+</html>
+

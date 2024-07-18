@@ -1,0 +1,239 @@
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.fade-out {
+  animation: fadeOut 0.5s forwards;
+}
+
+.fade-in {
+  animation: fadeIn 0.5s forwards;
+}
+
+@keyframes resetAnimation {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.cell-reset {
+  animation: resetAnimation 1.2s ease;
+}
+
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  background-color: #42b883;
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Align items to the top of the viewport */
+  flex-direction: column;
+  min-height: 100vh; /* Ensure body takes at least full viewport height */
+  margin: 0;
+  padding: 20px; /* Add padding to body */
+}
+
+h1 {
+  font-size: 4rem;
+  color: #6643b5;
+  font-family: "Permanent Marker", cursive;
+  font-weight: 400;
+  font-style: normal;
+  margin-top: 0;
+}
+
+h6 {
+  font-size: 0.95rem;
+  font-weight: bolder;
+  margin-top: 0;
+  font-family: "Playwrite NZ", cursive;
+  font-optical-sizing: auto;
+  transition: opacity 0.5s ease;
+  color: #430f58;
+}
+
+.message {
+  font-size: 2rem;
+  color: #430f58;
+  margin-top: 0;
+  font-family: "Playwrite NZ", cursive;
+  font-optical-sizing: auto;
+  transition: opacity 0.5s ease;
+}
+
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  transition: opacity 0.5s ease;
+
+  label {
+    font-size: 3rem;
+    font-weight: bold;
+    vertical-align: middle;
+    cursor: pointer;
+  }
+
+  input[type="radio"] {
+    cursor: pointer;
+    margin: 1rem;
+  }
+
+  fieldset {
+    border: none;
+    display: block;
+    opacity: 1;
+    transition: all ease 1s;
+  }
+
+  &.game-on fieldset {
+    opacity: 0;
+    display: none;
+  }
+
+  &.game-on button {
+    opacity: 1;
+    display: block;
+    margin: 0 auto 10px;
+  }
+}
+
+#grid-section {
+  margin: 1em 0;
+}
+
+#grid {
+  width: 300px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 15px;
+  list-style: none;
+  padding: 0;
+}
+
+#grid li {
+  background-color: #69d2e7;
+  color: white;
+  font-size: 2rem;
+  text-align: center;
+  line-height: 80px; /* Adjust as needed for vertical alignment */
+  border: none;
+  border-radius: 10%;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for background and text color */
+}
+
+#grid li:hover {
+  background-color: #fa6900;
+}
+
+#grid li:nth-child(1),
+#grid li:nth-child(2),
+#grid li:nth-child(3) {
+  border-top: none;
+}
+
+#grid li:nth-child(3n) {
+  border-right: none;
+}
+
+#grid li:nth-child(7),
+#grid li:nth-child(8),
+#grid li:nth-child(9) {
+  border-bottom: none;
+}
+
+#grid li:nth-child(3n + 1) {
+  border-left: none;
+}
+
+/* .resetButton,
+.resetButton:focus {
+  background-color: #dc2f2f;
+  opacity: 0;
+  outline: 0;
+  padding: 10px 30px;
+  transition: all ease 0.3s;
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  transition: 0.4s;
+}
+
+.resetButton:hover {
+  background-color: #ff5722;
+  box-shadow: 8px 8px #ff894c;
+  color: #000;
+  font-weight: bold;
+  transition: 0.4s;
+} */
+
+@media only screen and (min-device-width: 1000px) {
+  #grid {
+    width: 500px; /* Increase grid width for better layout on larger screens */
+  }
+
+  #grid li {
+    font-size: 7rem;
+    width: 120px;
+    height: 120px;
+    line-height: 120px;
+  }
+}
+
+/* Changing Scroll Bar Color */
+
+::-webkit-scrollbar {
+  width: 20px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #fa6900;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #fa6900;
+}
+
+
