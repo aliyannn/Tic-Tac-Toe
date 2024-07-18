@@ -39,19 +39,91 @@ This repository contains a web-based Tic Tac Toe game where a human player compe
 #### Building the Game Grid:
 * Grid Creation: Dynamically creates the 3x3 grid and attaches playerMove event listeners to each cell.
 
-#### Handling Player Moves:
-* Player Actions: Updates the board and UI when the player makes a move.
-* State Management: Disables the grid and clears the player's move timer.
-* AI Move: Calls computerMove() after a delay to simulate thinking time.
+### Handling Player Moves:
+#### The playerMove function is triggered when the player clicks on a cell. Here's the detailed breakdown:
+#### Keypoints: 
 
-#### Handling AI Moves:
-* Minimax Algorithm: Uses the minimax algorithm to determine the best move.
-* AI Actions: Updates the board and UI when the AI makes a move.
-* State Management: Enables the grid and starts the player's move timer.
+#### i) Check Turn and Cell State:
+* if (isPlayerTurn && event.target.textContent === ' '): Ensures it's the player's turn and the clicked cell is empty.
 
-#### Minimax Algorithm:
-* Recursive Algorithm: Evaluates all possible moves to find the optimal one.
-* Scoring: Assigns scores based on game outcomes (win, loss, tie).
+####  ii) Update UI and State:
+* event.target.textContent = playerMark;: Sets the player's mark (X or O) in the clicked cell.
+* animateMove(event.target);: Adds an animation to the cell.
+* let index = cells.indexOf(event.target);: Gets the index of the clicked cell.
+* board[index] = playerMark;: Updates the internal game board state.
+
+#### iii) Change Turn and Manage Timers:
+* isPlayerTurn = false;: Switches the turn to the computer.
+* disableGrid();: Disables the grid to prevent further player interaction until the computer moves.
+* clearTimeout(playerTimer);: Clears the player's move timer.
+
+#### iv) Check for Winner and Trigger Computer Move:
+* if (!checkWinner(board)): Checks if the player has won. If not, updates the message and triggers the computer's move after a delay to simulate thinking time.
+After the computer's move, checks again for a winner and updates the message.
+
+### Handling AI Moves:
+#### The computerMove function determines and makes the best move for the AI using the minimax algorithm. Here's the breakdown:
+#### Keypoints:
+
+#### i) Initialize Variables:
+* let bestScore = -Infinity;: Sets the initial best score to a very low value.
+* let moveIndex;: Variable to store the index of the best move.
+
+#### ii) Find the Best Move:
+* Loops through each cell in the board.
+* If the cell is empty, makes a temporary move for the computer.
+* Uses minimax to evaluate the score of this move.
+* Reverts the move.
+* Updates bestScore and moveIndex if this move has a better score.
+
+#### iii) Make the move:
+* Sets the computer's mark in the best cell.
+* Updates the board and UI.
+* Animates the move.
+
+#### iv) Switch Turn and Manage Timers:
+* Switches the turn back to the player.
+* Enables the grid for the player.
+* Starts the player's timer.
+
+#### v) Check for Winner:
+* Checks if the computer has won. If not, returns true to indicate the game continues.
+
+### Minimax Algorithm:
+#### The minimax function is a recursive algorithm used to determine the optimal move for the AI. Here's the breakdown:
+#### Keypoints:
+
+#### i) Check for Terminal States:
+* let result = checkWinner(board, true);: Checks if the game has a winner or is a tie.
+* If there is a result, returns a score based on who won or if it's a tie:
+* AI win: 10 - depth (favors quicker wins).
+* Player win: depth - 10 (penalizes quicker losses).
+* Tie: 0.
+
+#### ii) Maximizing Player (AI):
+* if (isMaximizing): When it's the AI's turn.
+* Initializes bestScore to a very low value.
+
+#### iii) Loops through each cell:
+* If the cell is empty, makes a temporary move for the AI.
+* Recursively calls minimax to get the score of this move.
+* Reverts the move.
+* Updates bestScore with the maximum of the current best score and the new score.
+
+#### iv) Minimizing Player (Human):
+* else: When it's the player's turn.
+* Initializes bestScore to a very high value.
+
+#### v) Loops through each cell:
+* If the cell is empty, makes a temporary move for the player.
+* Recursively calls minimax to get the score of this move.
+* Reverts the move.
+* Updates bestScore with the minimum of the current best score and the new score.
+
+#### vi) Return Best Score:
+* Returns the best score found for the current player (AI or human).
+
+#### NOTE: By using the minimax algorithm, the AI evaluates all possible moves and their outcomes, ensuring it makes the optimal move to either win or draw the game. This ensures a challenging opponent for the player.
 
 #### Checking for a Winner:
 * Winning Patterns: Checks predefined patterns to determine if there's a winner.
